@@ -28,6 +28,7 @@ class App extends React.Component {
     // return
     return (
       <div className="App">
+        <h1>Monsters Rolodex</h1>
         {/* Searchbox to filter by monster */}
         <SearchBox 
         placeholder='search monsters'
