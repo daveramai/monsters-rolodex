@@ -2,33 +2,37 @@ import React from 'react';
 import './App.css';
 //my custom imports
 import {CardList} from './component/card-list/card-list.component';
-
+import {SearchBox} from './component/search-box/search-box.component';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      monsters: [],
+      monsters: [], //loading handled by componentDidMount()
       searchField: ''
     };
   } //constructor
 
-  onChange = (e) => {
-    console.log(e.target.value);
-    this.setState({searchField: e.target.value});
+  // custom arrow function to handle onChange events on searchbox
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
   }
 
   render() {
     // destructure state into reusable array variables
     const { monsters, searchField } = this.state;
-    // filter new monster array based on search
+    // filter new monster array based on search (if blank then it returns all monsters)
     const filteredMonsters = monsters.filter(monster =>
       monster.name.toLowerCase().includes(searchField.toLowerCase()));
+    console.log(filteredMonsters);
     // return
     return (
       <div className="App">
         {/* Searchbox to filter by monster */}
-        <input onChange={this.onChange} type="search" placeholder="search monster" />
+        <SearchBox 
+        placeholder='search monsters'
+        handleChange={this.handleChange}
+        />
         {/* CardList component - responsible for listing all the cards */}
         <CardList monsters={filteredMonsters}/>
       </div>
