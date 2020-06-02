@@ -4,6 +4,8 @@ import './card.styles.css';
 // rafc + TAB for template
 export const Card = (props) => (
     <div className="card-container">
-        <h1> {props.monster.name} </h1>    
+        <img alt="monster" src={`https://robohash.org/${props.monster.id}?set=set1&size=180x180`} />
+        <h2> {props.monster.name} </h2>
+        <p> {props.monster.email} </p>    
     </div>
 )
